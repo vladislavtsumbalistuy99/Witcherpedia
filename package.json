@@ -1,0 +1,64 @@
+{
+  "name": "Witcherpedia",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "author": {
+    "name": "Andrii Mozharovskyi",
+    "email": "andrii.mozharovskyi@gmail.com"
+  },
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "api",
+      "ui",
+      "shared"
+    ]
+  },
+  "scripts": {
+    "dev:all:start": "concurrently --names \"SHARED,VUE,NEST\" -c \"yellow.bold,yellow.bold\" \"yarn dev:shared:start\" \"yarn dev:ui:start\" \"yarn dev:api:start\"",
+    "dev:all:build": "yarn dev:shared:build && yarn dev:ui:build && yarn dev:api:build",
+    "dev:ui:start": "cd ui && yarn serve",
+    "dev:ui:build": "cd ui && yarn build",
+    "dev:ui:lint": "cd ui && yarn lint",
+    "test:ui:unit": "cd ui && yarn test:unit",
+    "test:ui:e2e": "cd ui && yarn test:e2e",
+    "dev:api:build": "cd api && yarn build",
+    "dev:api:start": "cd api && yarn start:dev",
+    "dev:api:lint": "cd api && yarn lint",
+    "prod:api:start": "cd api && yarn start:prod",
+    "dev:shared:start": "cd shared && yarn build:watch",
+    "dev:shared:build": "cd shared && rimraf dist && yarn build",
+    "dev-shared:ui:start": "concurrently --names \"SHARED,VUE\" -c \"yellow.bold,yellow.bold\" \"yarn dev:shared:start\" \"yarn dev:ui:start\"",
+    "dev-shared:server:start": "concurrently --names \"SHARED,SERVER\" -c \"yellow.bold,yellow.bold\" \"yarn dev:shared:start\" \"yarn dev:api:start\"",
+    "dev-shared:ui:build": "yarn dev:shared:build && arn dev:ui:build",
+    "dev-shared:server:build": "yarn dev:shared:build && arn dev:api:build",
+    "utils:remove-node-modules": "rimraf node_modules ui/node_modules api/node_modules shared/node_modules"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.25",
+    "@types/node": "12.12.22",
+    "@vue/cli-plugin-typescript": "^4.1.2",
+    "concurrently": "^5.0.2",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.2.0",
+    "ts-node": "^8.5.4",
+    "tsconfig-paths": "^3.9.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@Witcherpedia/shared": "1.0.0",
+    "@nestjs/typeorm": "^7.0.0",
+    "mysql": "^2.18.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.24"
+  },
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=6.0.0",
+    "yarn": ">=1.21.0"
+  }
+}
