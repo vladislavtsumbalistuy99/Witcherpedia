@@ -13,4 +13,11 @@ import {
 export class Races {
   @PrimaryGeneratedColumn({ type: "int" })
   id: number;
+
+  @Column({ type: "varchar", length: 512 })
+  name: string;
+
+  @Column({ length: 500 })
+  description: string;
+
 }

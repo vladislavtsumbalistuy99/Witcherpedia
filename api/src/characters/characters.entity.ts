@@ -1,3 +1,6 @@
+import { IKingdomsDto } from './../../../shared/src/kingdoms/kingdoms.dto';
+import { IProfessionssDto } from './../../../shared/src/professions/professions.dto';
+import { IRaceDto } from './../../../shared/src/races/races.dto';
 import {
   BeforeUpdate,
   Column,
@@ -19,4 +22,15 @@ export class Characters {
 
   @Column({ length: 500 })
   description: string;
+
+  // @Column({ length: 500 })
+  // race: IRaceDto;
+
+  // @Column({ length: 500 })
+  // profession: IProfessionssDto;
+
+  // @Column({ length: 500 })
+  // region: IKingdomsDto
+
+  
 }
