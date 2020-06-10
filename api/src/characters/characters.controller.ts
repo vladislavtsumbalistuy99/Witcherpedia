@@ -16,7 +16,13 @@ export class CharactersController {
   constructor(private readonly CharactersService: CharactersService) { }
 
   @Get()
-  getAll(): string {
+  getAll(): any {
     return this.CharactersService.findAll()
+  }
+
+  @Get("/test")
+  test(): any {
+    return 'ddd'
+    //return this.CharactersService.test()
   }
 }

@@ -1,18 +1,18 @@
 import { Characters } from 'src/characters/characters.entity';
+import { Kingdoms } from './../kingdoms/kingdoms.entity';
 import {
   BeforeUpdate,
   Column,
   Entity,
   JoinColumn,
-  OneToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
   ManyToMany,
   JoinTable,
-  ManyToOne,
 } from 'typeorm';
 
 @Entity()
-export class Professions {
+export class Kings {
   @PrimaryGeneratedColumn({ type: "int" })
   id: number;
 
@@ -20,15 +20,21 @@ export class Professions {
   name: string;
 
   @Column({ length: 500 })
-  description: string;
+  history: string;
 
   @Column({ type: "varchar", length: 512 })
   galery: any;
 
+  @ManyToMany(
+    () => Kingdoms,
+    kingdom => kingdom.kings,
+  )
+  kingdoms: Kingdoms[]
+
   @ManyToOne(
     () => Characters,
-    characters => characters.professions,
-    { onDelete: "CASCADE" }
+    character => character.kings,
+    { onDelete: "CASCADE", eager: true },
   )
   characters: Characters
 }

@@ -15,6 +15,8 @@ import { BooksController } from './books/books.controller';
 import { GamesController } from './games/games.controller';
 import { GamesModule } from './games/games.module';
 import { BooksModule } from './books/books.module';
+import { KingsController } from './kings/kings.controller';
+import { KingsModule } from './kings/kings.module';
 
 @Module({
   imports: [
@@ -25,7 +27,8 @@ import { BooksModule } from './books/books.module';
     KingdomsModule,
     CitiesModule,
     GamesModule,
-    BooksModule
+    BooksModule,
+    KingsModule
   ],
   controllers: [
     AppController,
@@ -34,7 +37,8 @@ import { BooksModule } from './books/books.module';
     KingdomsController,
     CitiesController,
     BooksController,
-    GamesController
+    GamesController,
+    KingsController
   ],
   providers: [AppService],
 })

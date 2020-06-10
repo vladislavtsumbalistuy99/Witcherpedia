@@ -1,11 +1,14 @@
-import { IKingdomsDto } from './../../../shared/src/kingdoms/kingdoms.dto';
-import { IProfessionssDto } from './../../../shared/src/professions/professions.dto';
-import { IRaceDto } from './../../../shared/src/races/races.dto';
+import { Kings } from './../kings/kings.entity';
+import { Kingdoms } from './../kingdoms/kingdoms.entity';
+import { Professions } from './../professions/professions.entity';
+import { Races } from './../races/races.entity';
+
 import {
   BeforeUpdate,
   Column,
   Entity,
   JoinColumn,
+  OneToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   ManyToMany,
@@ -21,16 +24,34 @@ export class Characters {
   name: string;
 
   @Column({ length: 500 })
-  description: string;
+  descriptions: string;
 
-  // @Column({ length: 500 })
-  // race: IRaceDto;
+  @OneToMany(
+    () => Races,
+    race => race.characters,
+  )
+  @JoinColumn()
+  races: Races[]
 
-  // @Column({ length: 500 })
-  // profession: IProfessionssDto;
+  @OneToMany(
+    () => Professions,
+    profession => profession.characters,
+    { eager: true},
+  )
+  @JoinColumn()
+  professions: Professions[]
 
-  // @Column({ length: 500 })
-  // region: IKingdomsDto
+  @OneToMany(
+    () => Kingdoms,
+    kingdoms => kingdoms.characters,
+  )
+  @JoinColumn()
+  kingdoms: Kingdoms[]
 
-  
+  @OneToMany(
+    () => Kings,
+    king => king.characters,
+  )
+  @JoinColumn()
+  kings: Kings[]
 }
